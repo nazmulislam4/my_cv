@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My_CV</title>
-    <link rel="shortcut icon" href="images/file/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/file/favicon.ico"  type="image/x-icon">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -86,6 +86,30 @@
             font-size: 14px;
             margin: 3px 0;
         }
+    </style>
+    <style>
+        @media print {
+        @page {
+            margin: 10mm; /* Adjust margins for the entire document */
+            margin-bottom: 20mm; /* Space at the bottom of each page */
+
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Optional: If you have headers or footers on your page, hide them for print */
+        header, footer {
+            display: none;
+        }
+        /* Adds space at the beginning of the second page */
+        .second-page {
+            page-break-before: always; /* Forces a page break before this element */
+            padding-top: 15mm; /* Adds 30mm of space at the top of the second page */
+        }
+    }
     </style>
 </head>
 <body>
@@ -176,5 +200,18 @@
             </div>
         </div>
     </div>
+    <script>
+        window.addEventListener("beforeprint", () => {
+          const style = document.createElement("style");
+          style.innerHTML = `
+            @media print {
+              @page { margin: 0; }
+              body { margin: 0; padding: 0; }
+              header, footer { display: none; }
+            }
+          `;
+          document.head.appendChild(style);
+        });
+        </script>
 </body>
 </html>
